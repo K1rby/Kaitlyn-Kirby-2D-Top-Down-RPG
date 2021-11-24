@@ -7,6 +7,10 @@ public class Enemy : MonoBehaviour
     public float speed = 3f;
     private Transform target;
 
+    [SerializeField] private float attackDamage = 10f;
+    [SerializeField] private float attackSpeed = 1f;
+    private float canAttack;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +24,23 @@ public class Enemy : MonoBehaviour
         {
             float step = speed * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, target.position, step);
+        }
+        canAttack += Time.deltaTime;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (attackSpeed <= canAttack)
+            {
+                collision.gameObject.GetComponent<PlayerHealth>().UpdateHealth(-attackDamage);
+                canAttack = 0f;
+            }
+            /*else
+            {
+                canAttack += Time.deltaTime;
+            }*/
         }
     }
 
