@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
     public Rigidbody2D rb2D;
+    [SerializeField] Transform hand;
 
     Vector2 movement;
 
@@ -13,11 +14,18 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         MovementInput();
+        RotateHand();
     }
 
     private void FixedUpdate()
     {
         rb2D.velocity = movement * moveSpeed;
+    }
+
+    void RotateHand()
+    {
+        float angle = Utility.AngleTowardsMouse(hand.position);
+        hand.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
     }
 
     void MovementInput()

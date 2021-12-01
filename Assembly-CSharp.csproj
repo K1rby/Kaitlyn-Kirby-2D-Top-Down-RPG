@@ -59,6 +59,9 @@
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
+    <Compile Include="Assets\Scripts\Utility.cs" />
+    <Compile Include="Assets\Scripts\Arrow.cs" />
+    <Compile Include="Assets\Scripts\PlayerAttack.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
