@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(target != null)
         {
@@ -26,6 +26,22 @@ public class Enemy : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, target.position, step);
         }
         canAttack += Time.deltaTime;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (attackSpeed <= canAttack)
+            {
+                collision.gameObject.GetComponent<PlayerHealth>().UpdateHealth(-attackDamage);
+                canAttack = 0f;
+            }
+            /*else
+            {
+                canAttack += Time.deltaTime;
+            }*/
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
