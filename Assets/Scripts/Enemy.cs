@@ -4,17 +4,35 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Movement")]
     public float speed = 3f;
+
     private Transform target;
 
+    [Header("Attack")]
     [SerializeField] private float attackDamage = 10f;
     [SerializeField] private float attackSpeed = 1f;
     private float canAttack;
 
+    [Header("Health")]
+    private float health;
+    [SerializeField] private float maxHealth;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = maxHealth;
+    }
+
+    public void TakeDamage (float dmg)
+    {
+        health -= dmg;
+        Debug.Log("Enemy Health: " + health);
+
+        if(health <= 0f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame

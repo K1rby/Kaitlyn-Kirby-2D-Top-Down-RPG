@@ -74,12 +74,14 @@ public class PlayerAttack : MonoBehaviour
         }
 
         float arrowSpeed = bowCharge + bowPower;
-        float angle = Utility.AngleTowardsMouse(Bow.position);
+        float arrowDamage = bowCharge * bowPower;
 
+        float angle = Utility.AngleTowardsMouse(Bow.position);
         Quaternion rot = Quaternion.Euler(new Vector3(0f, 0f, angle - 90f));
 
         Arrow arrow = Instantiate(ArrowPrefab, Bow.position, rot).GetComponent<Arrow>();
         arrow.arrowVelocity = arrowSpeed;
+        arrow.arrowDamage = arrowDamage;
 
         canFire = false;
         ArrowGFX.enabled = false;
