@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class Utility
 {
+    // This script, when referenced by the PlayerMovement script, allows the mouse position to determine the aim of the bow
     public static float AngleTowardsMouse(Vector3 pos)
     {
         Vector3 mousePos = Input.mousePosition;

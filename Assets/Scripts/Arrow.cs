@@ -23,7 +23,7 @@ public class Arrow : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("Enemy Attacked");
+            //Debug.Log("Enemy Attacked");
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             enemy.TakeDamage(arrowDamage);
         }
